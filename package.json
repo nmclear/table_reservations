@@ -1,0 +1,24 @@
+{
+  "name": "table_reservations",
+  "version": "1.0.0",
+  "description": "Node.js, express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmclear/table_reservations.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmclear/table_reservations/issues"
+  },
+  "homepage": "https://github.com/nmclear/table_reservations#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
