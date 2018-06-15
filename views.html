@@ -7,6 +7,7 @@
     <title>Reservations || Tables </title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
     
@@ -25,7 +26,7 @@
     <div class="card">
         <div class="card-header">Current Reservations</div>
         <div class="card-body">
-            <div>
+            <div id="reserveList">
 
             </div>
         </div>
@@ -33,20 +34,57 @@
     <div class="card">
         <div class="card-header">Waiting List</div>
         <div class="card-body">
-            <div>
+            <div id="waitingList">
                     
             </div>
         </div>
     </div>
     <div>
-        <p><a href="#">API Table Link</a> || <a href="#">API Wait List</a></p>
+        <p><a href="/api/reservations">API Table Link</a> || <a href="/api/waitlist">API Wait List</a></p>
     </div>
 
 </div>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $.get("/api/reservations", function(data) {
+            console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            var reservationsDiv = $("<div>");
+            reservationsDiv.addClass("reserveDiv");
+            reservationsDiv.attr("id", "reserveDiv" + i);
+            $("#reserveList").append(reservationsDiv);
+    
+            $("#reserveDiv" + i).append("<h2>" + data[i].name + "</h2>");
+            $("#reserveDiv" + i).append("<h4>Phone: " + data[i].phone + "</h4>");
+            $("#reserveDiv" + i).append("<h4>Email:: " + data[i].email + "</h4>");
+            $("#reserveDiv" + i).append("<h4>UniqueID: " + data[i].uniqueID + "</h4>");
+            $("#reserveDiv" + i).append("-------------------------------------------");
+          }
+        });
+        $.get("/api/waitlist", function(data) {
+            console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            var waitingDiv = $("<div>");
+            waitingDiv.addClass("waitingDiv");
+            waitingDiv.attr("id", "waitingDiv" + i);
+            $("#waitingList").append(waitingDiv);
+    
+            $("#waitingDiv" + i).append("<h2>" + data[i].name + "</h2>");
+            $("#waitingDiv" + i).append("<h4>Phone: " + data[i].phone + "</h4>");
+            $("#waitingDiv" + i).append("<h4>Email: " + data[i].email + "</h4>");
+            $("#waitingDiv" + i).append("<h4>UniqueID: " + data[i].uniqueID + "</h4>");
+            $("#waitingDiv" + i).append("-------------------------------------------");
+          }
+        });
+      </script>
+
+
 
 </body>
 </html>

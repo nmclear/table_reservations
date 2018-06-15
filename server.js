@@ -59,10 +59,10 @@ app.get("/api/waitlist", function(req, res) {
 });
 
 
-// function postReservations(){
+function postReservations(){
     app.post("/api/reservations", function(req, res){
         var newReservation = req.body;
-        if(reservations.length > 5){
+        if(reservations.length >= 5){
             waitList.push(newReservation);
             res.json(newReservation);
             return false;
@@ -72,9 +72,9 @@ app.get("/api/waitlist", function(req, res) {
             return true;
         }
     });
-// }
+}
 
-// postReservations();
+postReservations();
 // if(postListen){
 //     alert('you made a reservation');
 // } else {
